@@ -2,9 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
-    android:background="@drawable/border_panel">
+    android:layout_width="400dp"
+    android:layout_height="180dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/border_panel"
+    android:padding="5dp">
 
     <TextView
         android:id="@+id/txtFecha"
@@ -29,12 +31,13 @@
         tools:text="10:10" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txtPrecio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="64dp"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="50" />
@@ -47,5 +50,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPrecio" />
 </androidx.constraintlayout.widget.ConstraintLayout>

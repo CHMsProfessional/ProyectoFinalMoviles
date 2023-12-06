@@ -16,13 +16,14 @@ object HorariosRepository {
 
     fun GetHorariosPelicula(
         accessToken: String?,
+        idPelicula: Int,
         success: (List<Horarios>?) -> Unit,
         failure: (Throwable) -> Unit
     ) {
         val retrofit = RetrofitRepository.getRetrofit()
 
         val api = retrofit.create(HorariosAPI::class.java)
-        api.getHorariosPelicula(getAuthorizationHeader(accessToken))
+        api.getHorariosPelicula(getAuthorizationHeader(accessToken),idPelicula)
             .enqueue(object : Callback<List<Horarios>> {
 
                 override fun onResponse(call: Call<List<Horarios>>, response: Response<List<Horarios>>) {

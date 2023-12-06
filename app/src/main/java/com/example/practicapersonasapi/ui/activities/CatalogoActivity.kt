@@ -1,6 +1,7 @@
 package com.example.practicapersonasapi.ui.activities
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -118,18 +119,30 @@ class CatalogoActivity : AppCompatActivity(),
     }
 
     override fun onPeliculasEstrenoItemClick(peliculas: Pelicula) {
-        TODO("Not yet implemented")
+        abrirDetallesPelicula(peliculas)
     }
 
     override fun onPeliculasCarteleraItemClick(peliculas: Pelicula) {
-        TODO("Not yet implemented")
+        abrirDetallesPelicula(peliculas)
     }
 
     override fun onPeliculasPreventaItemClick(peliculas: Pelicula) {
-        TODO("Not yet implemented")
+        abrirDetallesPelicula(peliculas)
     }
 
     override fun onPeliculasProximamenteItemClick(peliculas: Pelicula) {
-        TODO("Not yet implemented")
+        abrirDetallesPelicula(peliculas)
+    }
+
+    private fun abrirDetallesPelicula(pelicula: Pelicula) {
+        val intent = Intent(this, DetailsPeliculaActivity::class.java)
+        intent.putExtra("id", pelicula.id)
+        intent.putExtra("sinopsis", pelicula.synopsis)
+        intent.putExtra("titulo", pelicula.title)
+        intent.putExtra("imagen", pelicula.posterUrl)
+        intent.putExtra("duracion", pelicula.durationMin)
+
+        // Inicia la actividad
+        startActivity(intent)
     }
 }

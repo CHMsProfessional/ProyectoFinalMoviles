@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             binding.btnIniciarSesion.text = "Logout"
             binding.btnIniciarSesion.setOnClickListener {
-                // Realiza las acciones de cierre de sesión
                 editor.clear()
                 editor.apply()
                 finish()
