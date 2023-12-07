@@ -2,16 +2,14 @@ package com.example.practicapersonasapi.models
 
 data class RReserva(
     val id: Long,
-    val userID: Long,
-    val scheduleID: Long,
+    val user_id: Long,
+    val schedule_id: Long,
     val totalPrice: Long,
     val code: String,
     val ingreso: Long,
-    val createdAt: String,
-    val updatedAt: String,
-    val qrURL: String,
+    val qrUrl: String,
     val user: User,
-    val horario: Horario,
+    val schedule: Horario,
     val tickets: List<Ticket>
 ) {
 

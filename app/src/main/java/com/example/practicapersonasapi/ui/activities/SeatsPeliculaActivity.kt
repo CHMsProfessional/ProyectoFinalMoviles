@@ -80,6 +80,10 @@ class SeatsPeliculaActivity : AppCompatActivity() {
             Toast.makeText(this, "Selecciona al menos un asiento", Toast.LENGTH_SHORT).show()
             return
         }
+        if (asientosSeleccionados.size != cantidad_boletos) {
+            Toast.makeText(this, "Selecciona $cantidad_boletos asientos", Toast.LENGTH_SHORT).show()
+            return
+        }
         var Intent = Intent(this, ReservePeliculaActivity::class.java)
         Intent.putExtra("horario_id", horario_id)
         Intent.putExtra("asientos_seleccionados", asientosSeleccionados)

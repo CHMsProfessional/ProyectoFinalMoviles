@@ -64,12 +64,12 @@
         app:layout_constraintTop_toTopOf="@+id/LabelCVV" />
 
     <EditText
-        android:id="@+id/txtDiaFinal"
+        android:id="@+id/txtAnoFinal"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:ems="10"
-        android:hint="dia"
+        android:hint="año"
         android:inputType="number"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4" />
@@ -78,10 +78,13 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
+        android:layout_marginTop="25dp"
         android:text=" / "
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="212dp"
-        tools:layout_editor_absoluteY="284dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.605"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombreFinal" />
 
     <TextView
         android:id="@+id/labelFechaEX"

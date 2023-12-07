@@ -2,9 +2,9 @@ package com.example.practicapersonasapi.models
 
 data class Ticket(
     val id: Long,
-    val seatID: Long,
+    val seat_id: Long,
     val priceSold: Long,
-    val reservationID: Long,
+    val reservation_id: Long,
     val seat: Asiento
 ) {
 }
