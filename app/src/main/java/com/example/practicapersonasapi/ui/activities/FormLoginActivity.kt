@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.example.practicapersonasapi.databinding.ActivityFormLoginBinding
 import com.example.practicapersonasapi.models.User
@@ -52,6 +53,8 @@ class FormLoginActivity : AppCompatActivity() {
             val editor = sharedPreferences.edit()
             editor.putBoolean("isLoggedIn", true)
             saveToken(user.authToken)
+            saveRole(user.roles)
+            Log.d("roles", "Roles: "+user.roles.toString() )
             editor.apply()
 
             finish()
@@ -63,6 +66,13 @@ class FormLoginActivity : AppCompatActivity() {
             finish()
         })
 
+    }
+
+    private fun saveRole(roles: List<String>?) {
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("roles", roles.toString())
+        editor.apply()
     }
 
     private fun saveToken(token: String?){

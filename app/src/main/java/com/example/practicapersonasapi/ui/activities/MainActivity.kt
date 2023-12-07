@@ -50,11 +50,17 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, CatalogoActivity::class.java)
             startActivity(intent)
         }
+        binding.btnReservas.setOnClickListener {
+            val intent = Intent(this, ReservesUserActivity::class.java)
+            startActivity(intent)
+        }
 
         if (accessToken == null) {
             binding.btnCartelera.visibility = View.GONE
+            binding.btnReservas.visibility = View.GONE
         } else {
             binding.btnCartelera.visibility = View.VISIBLE
+            binding.btnReservas.visibility = View.VISIBLE
         }
     }
     override fun onResume() {
