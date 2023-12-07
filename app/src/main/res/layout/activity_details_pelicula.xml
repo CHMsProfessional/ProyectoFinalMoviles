@@ -79,6 +79,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvDoblada"
+            android:layout_width="0dp"
+            android:layout_height="500dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_panel"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelDoblada" />
+
         <TextView
             android:id="@+id/labelSubtitulada"
             android:layout_width="wrap_content"
@@ -91,20 +102,9 @@
             app:layout_constraintTop_toBottomOf="@+id/rvDoblada" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvDoblada"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/border_panel"
-            android:padding="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelDoblada" />
-
-        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSubtitulada"
             android:layout_width="0dp"
-            android:layout_height="210dp"
+            android:layout_height="500dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/border_panel"
             android:padding="5dp"

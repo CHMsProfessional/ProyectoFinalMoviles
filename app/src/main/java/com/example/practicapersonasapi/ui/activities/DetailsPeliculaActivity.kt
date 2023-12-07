@@ -1,6 +1,8 @@
 package com.example.practicapersonasapi.ui.activities
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +11,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.practicapersonasapi.databinding.ActivityDetailsPeliculaBinding
-import com.example.practicapersonasapi.models.Horarios
+import com.example.practicapersonasapi.models.GrupoHorarios
+import com.example.practicapersonasapi.models.Horario
 import com.example.practicapersonasapi.ui.adapter.HorariosPeliculaAdapter
 import com.example.practicaproductosapi.repositories.HorariosRepository
 
@@ -82,11 +85,21 @@ class DetailsPeliculaActivity : AppCompatActivity(),
     private fun fetchHorariosList(id: Int) {
         HorariosRepository.GetHorariosPelicula(
             accessToken,
-            1,
+            id,
             success = { horariosList ->
                 Log.d("Horarios", horariosList.toString())
+
+                val uniqueFechas = horariosList?.map { it.date }?.distinct()
+                val GrupoHorariosSubtitulados = ArrayList<GrupoHorarios>()
+                val GrupoHorariosDoblados = ArrayList<GrupoHorarios>()
+
                 val horariosFiltradosSubtitulados = horariosList?.filter { it.movie!!.language == 1 }
                 val horariosFiltradosDoblados = horariosList?.filter { it.movie!!.language == 2 }
+
+                for (fecha in uniqueFechas!!){
+                    GrupoHorariosDoblados.add(GrupoHorarios(fecha, horariosFiltradosDoblados?.filter { it.date == fecha } as ArrayList<Horario>))
+                    GrupoHorariosSubtitulados.add(GrupoHorarios(fecha, horariosFiltradosSubtitulados?.filter { it.date == fecha } as ArrayList<Horario>))
+                }
 
                 Log.d("Horarios Subtitulados", horariosFiltradosSubtitulados.toString())
                 Log.d("Horarios Doblados", horariosFiltradosDoblados.toString())
@@ -95,15 +108,23 @@ class DetailsPeliculaActivity : AppCompatActivity(),
                 val adapterSubtitulado = binding.rvSubtitulada.adapter as HorariosPeliculaAdapter
                 val adapterDoblado = binding.rvDoblada.adapter as HorariosPeliculaAdapter
 
-                adapterSubtitulado.updateData(horariosFiltradosSubtitulados ?: ArrayList())
-                adapterDoblado.updateData(horariosFiltradosDoblados ?: ArrayList())
+                adapterSubtitulado.updateData(GrupoHorariosDoblados ?: ArrayList())
+                adapterDoblado.updateData(GrupoHorariosSubtitulados ?: ArrayList())
             },
             failure = { _ ->
                 Toast.makeText(this, "Error al cargar datos", Toast.LENGTH_SHORT).show()
             }
         )
     }
-    override fun onHorariosPeliculasItemClick(horarios: Horarios) {
-        TODO("Not yet implemented")
+
+
+    override fun onHorariosPeliculasItemClick(horario: Horario) {
+    val intent = Intent(this, QuantityPeliculaActivity::class.java)
+        intent.putExtra("pelicula_id", horario.movie_id)
+        intent.putExtra("horario_id", horario.id)
+        intent.putExtra("precio_boleto", horario.price)
+
+        Log.d("PELICULA ID", "PELICULA ID:"+horario.movie_id.toString())
+        startActivity(intent)
     }
 }

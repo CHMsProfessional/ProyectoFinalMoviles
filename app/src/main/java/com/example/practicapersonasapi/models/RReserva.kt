@@ -11,7 +11,7 @@ data class RReserva(
     val updatedAt: String,
     val qrURL: String,
     val user: User,
-    val schedule: Horarios,
+    val horario: Horario,
     val tickets: List<Ticket>
 ) {
 

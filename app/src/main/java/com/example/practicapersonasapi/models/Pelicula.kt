@@ -1,7 +1,6 @@
 package com.example.practicapersonasapi.models
 
 class Pelicula(
-
     val title: String,
     val synopsis: String,
     val year: Int,

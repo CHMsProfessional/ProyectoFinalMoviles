@@ -1,7 +1,8 @@
 package com.example.practicaproductosapi.repositories
 
 
-import com.example.practicapersonasapi.models.Horarios
+import com.example.practicapersonasapi.models.GrupoHorarios
+import com.example.practicapersonasapi.models.Horario
 import com.example.practicapersonasapi.repositories.RetrofitRepository
 import com.example.practicaproductosapi.api.HorariosAPI
 import retrofit2.Call
@@ -17,21 +18,21 @@ object HorariosRepository {
     fun GetHorariosPelicula(
         accessToken: String?,
         idPelicula: Int,
-        success: (List<Horarios>?) -> Unit,
+        success: (List<Horario>?) -> Unit,
         failure: (Throwable) -> Unit
     ) {
         val retrofit = RetrofitRepository.getRetrofit()
 
         val api = retrofit.create(HorariosAPI::class.java)
         api.getHorariosPelicula(getAuthorizationHeader(accessToken),idPelicula)
-            .enqueue(object : Callback<List<Horarios>> {
+            .enqueue(object : Callback<List<Horario>> {
 
-                override fun onResponse(call: Call<List<Horarios>>, response: Response<List<Horarios>>) {
+                override fun onResponse(call: Call<List<Horario>>, response: Response<List<Horario>>) {
                     val horarios = response.body()
                     success(horarios)
                 }
 
-                override fun onFailure(call: Call<List<Horarios>>, t: Throwable) {
+                override fun onFailure(call: Call<List<Horario>>, t: Throwable) {
                     t.printStackTrace()
                     failure(t)
                 }
