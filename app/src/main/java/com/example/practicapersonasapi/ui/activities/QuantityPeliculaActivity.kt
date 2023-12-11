@@ -16,7 +16,7 @@ class QuantityPeliculaActivity : AppCompatActivity() {
     private var pelicula_id: Int = 0
     private var horario_id: Int = 0
     private var precio_boleto: Int = 0
-    private var cantidad_boletos: Int = 0
+    private var cantidad_boletos: Int = 1
     private var precio_final: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {

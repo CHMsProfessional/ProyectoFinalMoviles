@@ -14,14 +14,15 @@ import com.example.practicaproductosapi.repositories.PeliculasRepository
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 
-class ReservasAdapter(private var reservasList: ArrayList<RReserva>, private val listener: onReservasItemListener) :
+class ReservasAdapter(private var reservasList: ArrayList<RReserva>, private val listener: onReservasItemListener,
+                      private val accessToken: String?) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val rowView = inflater.inflate(R.layout.reserva_item, parent, false)
 
-        return ViewHolder(rowView)
+        return ViewHolder(rowView, accessToken)
     }
 
     override fun getItemCount(): Int {
@@ -41,13 +42,29 @@ class ReservasAdapter(private var reservasList: ArrayList<RReserva>, private val
     }
 
     class ViewHolder(
-        itemView: View
+        itemView: View,
+        private val accessToken: String?
     ) : RecyclerView.ViewHolder(itemView) {
         private val binding = ReservaItemBinding.bind(itemView)
 
         fun bind(reserva: RReserva, listener: onReservasItemListener) {
             val date = LocalDate.parse(reserva.schedule.date)
             val dateFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("MM-dd - EEEE")
+
+            PeliculasRepository.getPelicula(
+                accessToken,
+                reserva.schedule.movie_id,
+                success = { pelicula ->
+                    Glide.with(itemView)
+                        .load("http://cineapi.jmacboy.com"+ pelicula!!.posterUrl)
+                        .placeholder(R.drawable.background)
+                        .fitCenter()
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .into(binding.imgPeliculaR)
+                },
+                failure = { _ ->
+                }
+            )
 
             Glide.with(itemView)
                 .load("http://cineapi.jmacboy.com"+reserva.qrUrl)

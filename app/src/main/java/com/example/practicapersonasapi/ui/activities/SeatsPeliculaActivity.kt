@@ -136,7 +136,10 @@ class SeatsPeliculaActivity : AppCompatActivity() {
                     if (asiento == null || imageView.id == -1) {
                         imageView.setImageResource(R.drawable.nodisponible)
                         imageView.tag = "nodisponible"
-                    }else {
+                    }else if (!asiento.vacant) {
+                        imageView.setImageResource(R.drawable.ocupado)
+                        imageView.tag = "ocupado"
+                    }else{
                         imageView.setImageResource(R.drawable.libre)
                         imageView.tag = "libre"
                     }
@@ -171,7 +174,12 @@ class SeatsPeliculaActivity : AppCompatActivity() {
             imageView.tag = "libre"
             asientosSeleccionados.remove(imageView.id)
             cantidad_boletos_seleccionados--
+        } else if (tag == "ocupado") {
+            Toast.makeText(this, "Este asiento no está disponible", Toast.LENGTH_SHORT).show()
+        } else if (tag == "nodisponible") {
+            Toast.makeText(this, "Este asiento no está disponible", Toast.LENGTH_SHORT).show()
         }
+
         Log.d("SeatsPeliculaActivity", "Asientos seleccionados: $asientosSeleccionados")
     }
 
@@ -182,16 +190,16 @@ class SeatsPeliculaActivity : AppCompatActivity() {
             return
         }
 
-        horario?.let {
-            SalasRepository.getSala(
+        horario?.let { horario1 ->
+            SalasRepository.getSalaWithVacant(
                 accessToken,
-                it.room_id,
+                horario1.room_id,
+                horario1.id,
                 success = { sala ->
                     sala?.let {
                         this.sala = it
                     }
-
-                    // Llamar a setupTable solo cuando ambas operaciones estén completas
+                    Log.d("SeatsPeliculaActivity", "fetchAsientos: " + sala.toString())
                     checkAndSetupTable()
                 },
                 failure = { _ ->

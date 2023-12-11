@@ -3,18 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
+        android:hardwareAccelerated="true"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PracticaPersonasAPI"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.activities.ReservasAdminActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activities.ReservesUserActivity"
             android:exported="false" />
@@ -36,22 +40,14 @@
             android:name=".ui.activities.CatalogoActivity"
             android:exported="false" />
         <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+        <activity
             android:name=".ui.activities.FormRegisterActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.FormLoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.ListCategorias"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.FormCategoriasActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.FormProductosActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.FormPersonActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.MainActivity"

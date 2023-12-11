@@ -1,7 +1,7 @@
 package com.example.practicapersonasapi.models
 
 data class RReserva(
-    val id: Long,
+    val id: Int,
     val user_id: Long,
     val schedule_id: Long,
     val totalPrice: Long,
@@ -12,5 +12,5 @@ data class RReserva(
     val schedule: Horario,
     val tickets: List<Ticket>
 ) {
-
+    var message: String? = null
 }

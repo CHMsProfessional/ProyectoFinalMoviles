@@ -33,18 +33,20 @@ class ReservesUserActivity : AppCompatActivity(), ReservasAdapter.onReservasItem
     }
 
     private fun setupReciclerView() {
-        val adapter = ReservasAdapter(ArrayList(), this)
+        val adapter = ReservasAdapter(ArrayList(), this, accessToken)
         binding.rvReservas.apply {
             this.adapter = adapter
-            this.layoutManager = LinearLayoutManager(this@ReservesUserActivity,
-                LinearLayoutManager.VERTICAL, false)
+            this.layoutManager = LinearLayoutManager(
+                this@ReservesUserActivity,
+                LinearLayoutManager.VERTICAL, false
+            )
         }
     }
 
     override fun onResume() {
         super.onResume()
-        fetchReservas()
         accessToken = sharedPreferences.getString("accessToken", null)
+        fetchReservas()
     }
 
     private fun fetchReservas() {
@@ -52,7 +54,6 @@ class ReservesUserActivity : AppCompatActivity(), ReservasAdapter.onReservasItem
             accessToken,
             success = { rReservaList ->
                 Log.d("reservas", "Reservas: "+rReservaList.toString())
-
                 val adapter = binding.rvReservas.adapter as ReservasAdapter
                 adapter.updateData(rReservaList ?: ArrayList())
             },

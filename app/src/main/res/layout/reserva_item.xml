@@ -25,7 +25,7 @@
         android:layout_margin="5dp"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgPeliculaR"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -35,7 +35,7 @@
         android:layout_margin="5dp"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgPeliculaR"
         app:layout_constraintTop_toBottomOf="@+id/txtNombreQR" />
 
     <TextView
@@ -45,7 +45,7 @@
         android:layout_margin="5dp"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgPeliculaR"
         app:layout_constraintTop_toBottomOf="@+id/txtFechaP" />
 
     <TextView
@@ -64,9 +64,20 @@
         android:id="@+id/txtAsientos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imgPeliculaR"
         app:layout_constraintTop_toBottomOf="@+id/txtHoraP" />
+
+    <ImageView
+        android:id="@+id/imgPeliculaR"
+        android:layout_width="159dp"
+        android:layout_height="174dp"
+        android:layout_margin="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

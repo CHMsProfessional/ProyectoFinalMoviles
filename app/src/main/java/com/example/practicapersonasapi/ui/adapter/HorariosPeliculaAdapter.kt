@@ -49,12 +49,12 @@ class HorariosPeliculaAdapter(private var horarioPeliculaList: ArrayList<GrupoHo
 
         fun bind(grupoHorarios: GrupoHorarios, listener: OnHorariosPeliculasItemListener) {
             val horariosOrdenados = grupoHorarios.horarios.sortedBy { LocalDate.parse(it.date) }
-
+            binding.Container.removeAllViews()
             for (horario in horariosOrdenados) {
                 val view = LayoutInflater.from(itemView.context).inflate(R.layout.horarios_subitem, binding.Container, false)
 
                 view.findViewById<TextView>(R.id.txtHora).text = horario.time.dropLast(3)
-                binding.Container.removeAllViews()
+
                 binding.Container.addView(view)
 
                 view.findViewById<Button>(R.id.btnComprar).setOnClickListener {
